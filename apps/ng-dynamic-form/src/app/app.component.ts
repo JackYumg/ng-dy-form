@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Message } from '@dynamic-form/api-interfaces';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'dynamic-form-root',
@@ -8,6 +9,7 @@ import { Message } from '@dynamic-form/api-interfaces';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  hello$:any;
+  constructor(private http: HttpClient) {
+  }
 }

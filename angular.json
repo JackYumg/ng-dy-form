@@ -23,7 +23,12 @@
             "aot": true,
             "assets": [
               "apps/ng-dynamic-form/src/favicon.ico",
-              "apps/ng-dynamic-form/src/assets"
+              "apps/ng-dynamic-form/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "apps/ng-dynamic-form/src/assets"
+              }
             ],
             "styles": ["apps/ng-dynamic-form/src/styles.less"],
             "scripts": []

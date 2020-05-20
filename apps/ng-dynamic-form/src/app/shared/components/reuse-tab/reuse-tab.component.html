@@ -1,0 +1,13 @@
+<nz-tabset [nzType]="'card'" [nzTabBarExtraContent]="extraTemplate">
+  <nz-tab *ngFor="let tab of tabs | async" [nzTitle]="titleTemplate">
+    <ng-template #titleTemplate>
+      <div>
+        {{ tab }}
+        <i nz-icon nzType="close" nzTheme="outline"></i>
+      </div>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>
+<ng-template #extraTemplate>
+  <i class="ant-tabs-new-tab" nz-icon nzType="plus"></i>
+</ng-template>
