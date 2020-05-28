@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dynamic-form/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@dynamic-form/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@dynamic-form/util": ["libs/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

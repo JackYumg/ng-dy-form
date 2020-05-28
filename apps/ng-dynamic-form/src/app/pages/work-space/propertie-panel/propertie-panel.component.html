@@ -1,0 +1,13 @@
+<div class="per-panel-elm" #moveTpl>
+  <div class="title" #titleTpl>
+      控制面板
+  </div>
+  <div class="content">
+    <div class="panel">
+      <nz-radio-group [(ngModel)]="panelOptions.tab" nzSize="small" nzButtonStyle="solid">
+        <label nz-radio-button nzValue="a">属性</label>
+        <label nz-radio-button nzValue="s">样式</label>
+      </nz-radio-group>
+    </div>
+  </div>
+</div>

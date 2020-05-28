@@ -1,0 +1,91 @@
+<form nz-form nzLayout="horizontal" [formGroup]="menuForm">
+  <nz-row>
+    <nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">名称</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+          <input nz-input formControlName="name">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">排序</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+          <input nz-input type="number" formControlName="order">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <nz-row>
+    <nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">父级</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+          <input nz-input readonly [value]="parentName">
+          <input nz-input style="display: none" formControlName="parentId">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">是否为菜单</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+          <nz-radio-group formControlName="isParent">
+            <label nz-radio [nzValue]="true">是</label>
+            <label nz-radio [nzValue]="false">否</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <nz-row>
+    <nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">层级</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+          <nz-input-number formControlName="level" [nzDisabled]="true"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">路由</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+          <input nz-input formControlName="route">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <nz-row>
+    <nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">图标</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+          <input nz-input formControlName="icon">
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <nz-row>
+    <nz-col [nzSpan]="24">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="2">说明</nz-form-label>
+        <nz-form-control [nzSpan]="22">
+          <textarea nz-input [nzAutosize]="{minRows: 3 , maxRows: 5}" formControlName="commit"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <nz-row>
+    <nz-col [nzSpan]="24">
+      <nz-form-item>
+        <nz-form-control [nzOffset]="2" [nzSpan]="22">
+          <button nz-button nzType="primary" [disabled]="!menuForm.valid" (click)="submitForm()">提交</button>
+          &nbsp;&nbsp;&nbsp;
+          <button nz-button (click)="resetForm()">重置</button>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+</form>

@@ -1,0 +1,20 @@
+<nz-form-item [nzGutter]="formItem.gutter" [nzJustify]="formItem.justify">
+  <nz-form-label [nzSpan]="formItem.labelItem.span"
+                 [nzFor]="formItem.labelItem.zfor">
+    {{formItem.labelItem.label}}
+  </nz-form-label>
+
+  <ng-container>
+    <nz-form-control [nzSpan]="formItem.inputItem.span">
+      <input *ngIf="formItem.inputItem" nz-input [formControlName]="formItem.inputItem.bindFild"/>
+      <nz-input-number *ngIf="formItem.inputNumItem" [formControlName]="formItem.inputItem.bindFild"></nz-input-number>
+      <nz-radio-group [formControlName]="formItem.radioItem.bindFild" *ngIf="formItem.radioItem">
+        <label *ngFor="let item of formItem.radioItem.dataMaps" nz-radio [nzValue]=" item.value">{{item.label}}</label>
+      </nz-radio-group>
+      <nz-select [formControlName]="formItem.selectItem.bindFild" *ngIf="formItem.selectItem">
+        <nz-option *ngFor="let item of formItem.selectItem.dataMaps" [nzValue]="item.value" [nzLabel]="item.label">
+        </nz-option>
+      </nz-select>
+    </nz-form-control>
+  </ng-container>
+</nz-form-item>

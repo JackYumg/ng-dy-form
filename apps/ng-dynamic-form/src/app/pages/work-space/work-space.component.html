@@ -4,16 +4,17 @@
     <div class="col side">
       <dynamic-form-tools></dynamic-form-tools>
     </div>
-    <div class="col content">
+    <div class="col content" #parentTpl>
       <div class="workspace">
         <div id="formCanvas">
           <div class="work-space">
             <div id="form-space">
-              <dynamic-form-form></dynamic-form-form>
+              <dynamic-form-form ></dynamic-form-form>
             </div>
           </div>
         </div>
       </div>
+      <dynamic-form-propertie-panel *ngIf="false" [parentContainer]="parentTpl"></dynamic-form-propertie-panel>
     </div>
   </div>
   <div class="footer"></div>

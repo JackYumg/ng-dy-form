@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { openMenu, closeMenu } from '../../../pages/home/home/ngrx/home.actions';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'dynamic-form-header',
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
   @Output()
   isCollapsed: boolean;
   constructor(
-    private store: Store<{ isCollapsed: boolean }>
+    private store: Store<{ isCollapsed: boolean }>,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -32,5 +34,9 @@ export class HeaderComponent implements OnInit {
     } else {
       this.store.dispatch(closeMenu({ isCollapsed: this.isCollapsed }));
     }
+  }
+
+  gotoWrkspace() {
+    this.router.navigate(['/workspace']);
   }
 }

@@ -1,0 +1,69 @@
+<div class="data-map">
+  <section>
+    <form nz-form nzLayout="inline" [formGroup]="filterForm">
+      <nz-form-item>
+        <nz-form-label>字典名称</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="name" placeholder="请输入字典名称..."/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>字典类型</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="type" placeholder="请输入字典类型..."/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" (click)="getDataMaps()">查询</button>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="default">清除</button>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" (click)="showFormModal()">
+            <i nz-icon nzType="plus"></i>新增
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </section>
+  <section>
+    <nz-table #dataMapTable [nzData]="options.data"
+              [(nzPageIndex)]="options.pageNo"
+              [nzShowPagination]="true"
+              [nzTotal]="options.total"
+              [nzLoading]="options.loading"
+              [nzFrontPagination]="false"
+              (nzPageIndexChange)="getDataMaps()"
+              (nzPageSizeChange)="getDataMaps()"
+              [(nzPageSize)]="options.pageSize">
+      <thead>
+      <tr>
+        <th>名称</th>
+        <th>类型</th>
+        <th>值</th>
+        <th>说明</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of dataMapTable.data">
+        <td>{{data.name}}</td>
+        <td>{{data.type}}</td>
+        <td>{{data.value}}</td>
+        <td>{{data.commit}}</td>
+        <td>
+          <a>编辑</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-popconfirm nzPopconfirmTitle="确定删除字典？" (nzOnConfirm)="confirmDelete(data)">删除</a>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </section>
+</div>

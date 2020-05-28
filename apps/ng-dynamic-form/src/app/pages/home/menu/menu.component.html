@@ -1,0 +1,52 @@
+<div class="menu">
+  <nz-row>
+    <nz-col [nzSpan]="6" class="left">
+      <h2 nz-typography class="title">菜单</h2>
+      <nz-tree
+        nzBlockNode
+        [nzData]="nodes"
+        [nzTreeTemplate]="nzTreeTemplate"
+        (contextmenu)="contextMenu($event, topMenu)"
+      ></nz-tree >
+      <ng-template #nzTreeTemplate let-node let-origin="origin">
+        <span class="custom-node">
+          <span *ngIf="node.origin.isParent" (contextmenu)="contextMenu($event, foldMenu)">
+            <i nz-icon [nzType]="node.isExpanded ? 'folder-open' : 'folder'" ></i>
+            <span class="folder-name">{{ node.origin.name }}</span>
+            <nz-dropdown-menu #foldMenu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item (click)="addSubMenu(node)">新增</li>
+                <li nz-menu-item>编辑</li>
+                <li nz-menu-item (click)="deleteMenu(node)">删除</li>
+              </ul>
+            </nz-dropdown-menu>
+          </span>
+          <span *ngIf="!node.origin.isParent" (contextmenu)="contextMenu($event, leafMenu)">
+            <i nz-icon nzType="file"></i>
+            <span class="file-name">{{ node.origin.name }}</span>
+
+            <nz-dropdown-menu #leafMenu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item>编辑</li>
+                <li nz-menu-item (click)="deleteMenu(node)">删除</li>
+              </ul>
+            </nz-dropdown-menu>
+          </span>
+        </span>
+      </ng-template>
+
+      <nz-dropdown-menu #topMenu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item (click)="addTopMenu()">新增</li>
+        </ul>
+      </nz-dropdown-menu>
+    </nz-col>
+
+    <nz-col nzSpan="18" class="right">
+      <div class="title">
+        <button (click)="back()" nz-button nzType="default" *ngIf="formOption.showForm">返回</button>
+      </div>
+      <dynamic-form-menu-form (successCall)="successCall($event)" [hidden]="!formOption.showForm" [parentName]="formOption.parentName" [menuId]="formOption.menuId" [parentId]="formOption.parentId" [level]="formOption.level"></dynamic-form-menu-form>
+    </nz-col>
+  </nz-row>
+</div>

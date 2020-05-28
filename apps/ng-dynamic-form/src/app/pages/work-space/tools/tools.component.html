@@ -17,7 +17,8 @@
       >
         <ul class="list">
           <li *ngFor="let item of panel.models;let i = index;" draggable="true">
-            <i nz-icon [nzType]="item.type" nzTheme="outline"></i>
+            <i nz-icon [nzType]="item.type" nzTheme="outline" *ngIf="item.type"></i>
+            <i dynamic-form-input-icon [dyType]="item.icon" *ngIf="item.icon"></i>
             {{ item.name }}
           </li>
         </ul>

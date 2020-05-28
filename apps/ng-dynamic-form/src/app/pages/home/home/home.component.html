@@ -12,31 +12,23 @@
       [nzCollapsed]="isCollapsed$ | async"
       [nzTrigger]="null"
     >
-      <ul nz-menu nzMode="inline" class="sider-menu">
-        <li nz-submenu nzOpen nzIcon="user" nzTitle="subnav 1">
-          <ul>
-            <li nz-menu-item nzSelected>option1</li>
-            <li nz-menu-item>option2</li>
-            <li nz-menu-item>option3</li>
-            <li nz-menu-item>option4</li>
-          </ul>
-        </li>
-        <li nz-submenu nzTitle="subnav 2" nzIcon="laptop">
-          <ul>
-            <li nz-menu-item>option5</li>
-            <li nz-menu-item>option6</li>
-            <li nz-menu-item>option7</li>
-            <li nz-menu-item>option8</li>
-          </ul>
-        </li>
-        <li nz-submenu nzTitle="subnav 3" nzIcon="notification">
-          <ul>
-            <li nz-menu-item>option9</li>
-            <li nz-menu-item>option10</li>
-            <li nz-menu-item>option11</li>
-            <li nz-menu-item>option12</li>
-          </ul>
-        </li>
+      <ul nz-menu nzMode="inline">
+        <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"></ng-container>
+        <ng-template #menuTpl let-tpLmenus>
+          <ng-container *ngFor="let menu of tpLmenus">
+            <li *ngIf="!menu.isParent" nz-menu-item [nzPaddingLeft]="menu.level * 24" [routerLink]="['/', 'home', menu.route]" nzMatchRouter>
+              <a>
+                <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
+                <span>{{ menu.name }}</span>
+              </a>
+            </li>
+            <li *ngIf="menu.isParent" nz-submenu [nzTitle]="menu.name" [nzIcon]="menu.icon">
+              <ul>
+                <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu.children }"></ng-container>
+              </ul>
+            </li>
+          </ng-container>
+        </ng-template>
       </ul>
     </nz-sider>
 
